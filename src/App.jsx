@@ -1,12 +1,13 @@
 import './App.css'
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ConnectPage from "./components/connectPage.jsx";
-import Telemetry from "./components/telemetry.jsx";
-import Maps from "./components/maps.jsx";
-import Graphs from "./components/graphs.jsx";
-import Navbar from "./components/navbar.jsx";
-import Options from "./components/options.jsx";
+import Navbar from './components/Navbar';
+import ConnectPage from './components/ConnectPage';
+import Telemetry from './components/Telemetry';
+import Graphs from './components/Graphs';
+import Maps from './components/Maps';
+import Options from './components/Options';
+
 
 function App() {
 

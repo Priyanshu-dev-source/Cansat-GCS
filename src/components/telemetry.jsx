@@ -5,6 +5,8 @@ const Telemetry = ({ teamIdData }) => {
   const [cmoEcho, setCmoEcho] = useState("");
   const [altitude, setAltitude] = useState("No Data");
   const [stats, setStats] = useState("No Data");
+  const [longitude, setLongitude] = useState("05:34:65");
+  const [latitude, setLatitude] = useState("23:54:56");
   const [humidity, setHumidity] = useState("No Data");
   const [gyro, setGyro] = useState("No Data");
   const [acceleration, setAcceleration] = useState("No Data");
@@ -121,12 +123,12 @@ const Telemetry = ({ teamIdData }) => {
               <h1 className="text-[25px] font-iceland px-[10px]">
                 Latitude
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-                <span className="text-[28px] font-iceland ">00:00:00</span>{" "}
+                <span className="text-[28px] font-iceland ">{latitude}</span>{" "}
               </h1>
               <h1 className="text-[25px] font-iceland px-[10px]">
                 Longitude &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
                 <span className="text-[28px] font-iceland px-[10px]">
-                  {altitude}
+                  {longitude}
                 </span>{" "}
               </h1>
             </div>
