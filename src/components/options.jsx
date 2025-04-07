@@ -28,7 +28,9 @@ const Options = () => {
         className="h-[70%] w-[190px] border-2 border-black focus:scale-[110%] focus:font-bold hover:scale-[105%] transition-all duration-200 cursor-pointer bg-yellow-300 rounded-[5px] text-[25px] font-iceland">
           Map
         </button>
-        <button className="h-[70%] w-[190px] border-2 border-black focus:scale-[110%] focus:font-bold hover:scale-[105%] transition-all duration-200 cursor-pointer bg-yellow-300 rounded-[5px] text-[25px] font-iceland">
+        <button 
+        onClick={()=> navigate("/simulate")}
+        className="h-[70%] w-[190px] border-2 border-black focus:scale-[110%] focus:font-bold hover:scale-[105%] transition-all duration-200 cursor-pointer bg-yellow-300 rounded-[5px] text-[25px] font-iceland">
           Simulate
         </button>
       </div>

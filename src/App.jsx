@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import ConnectPage from './components/ConnectPage';
 import Telemetry from './components/Telemetry';
 import Graphs from './components/Graphs';
+import Simulate from './components/Simulate';
 import Maps from './components/Maps';
 import Options from './components/Options';
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/telemetry" receivedTeamId={teamIdData} element={<Telemetry />} />
           <Route path="/graph" element={<Graphs />} />
           <Route path="/map" element={<Maps />} />
+          <Route path="/simulate" element={<Simulate/>} />
         </Routes>
         <div className='absolute w-full bottom-0'>
           <Options/>
