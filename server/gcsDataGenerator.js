@@ -33,7 +33,7 @@ parser.on('data', (line) => {
     io.emit('telemetryData', jsonData);
 
   } catch (e) {
-    console.log("Malformed or non-JSON data:", line);
+    console.log("Malformed or non-JSON data:", e);
   }
 });
 
