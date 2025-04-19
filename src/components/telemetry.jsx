@@ -1,15 +1,26 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import io from "socket.io-client";
+
+const socket = io('http://localhost:5000');
 
 const Telemetry = ({ teamIdData }) => {
+
+
   const [cmoEcho, setCmoEcho] = useState("");
+  const [time, setTime] = useState("No Data")
+  const [gnssAltitude, setGnssAltitude] = useState(" No Data")
   const [altitude, setAltitude] = useState("No Data");
   const [stats, setStats] = useState("No Data");
   const [longitude, setLongitude] = useState("05:34:65");
   const [latitude, setLatitude] = useState("23:54:56");
   const [humidity, setHumidity] = useState("No Data");
-  const [gyro, setGyro] = useState("No Data");
-  const [acceleration, setAcceleration] = useState("No Data");
+  const [gyroX, setGyroX] = useState("No Data");
+  const [gyroY, setGyroY] = useState("No Data");
+  const [gyroZ, setGyroZ] = useState("No Data");
+  const [accelerationX, setAccelerationX] = useState("No Data");
+  const [accelerationY, setAccelerationY] = useState("No Data");
+  const [accelerationZ, setAccelerationZ] = useState("No Data");
   const [magneticField, setMagneticField] = useState("No Data");
   const [gyroRotation, setGyroRotation] = useState("No Data");
   const [pressure, setPressure] = useState("No Data");
@@ -21,6 +32,36 @@ const Telemetry = ({ teamIdData }) => {
   const toggleButtonState = (buttonState) => {
     setCmoEcho(buttonState);
   };
+
+  useEffect(() => {
+    socket.on('telemetryData', (data) => {
+      if (data.LATITUDE) setLatitude(data.LATITUDE);
+      if (data.GNSS_TIME) setTime(data.GNSS_TIME)
+      if (data.GNSS_LONGITUDE) setLongitude(data.GNSS_LONGITUDE);
+      if (data.ALTITUDE) setAltitude(data.ALTITUDE);
+      if (data.GNSS_ALTITUDE) setGnssAltitude(data.GNSS_ALTITUDE)
+      if (data.GNSS_SATS) setStats(data.GNSS_SATS);
+      // if (data.MAGNETIC_FIELD) setMagneticField(data.MAGNETIC_FIELD);
+      if (data.GYRO_SPIN_RATE){
+        setGyroX(data.GYRO_SPIN_RATE[0]);
+        setGyroY(data.GYRO_SPIN_RATE[1]);
+        setGyroZ(data.GYRO_SPIN_RATE[2]);
+      } 
+      if (data.PRESSURE) setPressure(data.PRESSURE);
+      if (data.VOLTAGE) setVoltage(data.VOLTAGE);
+      if (data.TEMP) setTemprature(data.TEMP);
+      // if (data.VELOCITY) setVelocity(data.VELOCITY);
+      if (data.PACKET_COUNT) setPacketCount(data.PACKET_COUNT);
+      if(data.ACCELEROMETER_DATA){
+        setAccelerationX(data.ACCELEROMETER_DATA[0]);
+        setAccelerationY(data.ACCELEROMETER_DATA[1]);
+        setAccelerationZ(data.ACCELEROMETER_DATA[2]);
+      }
+      // console.log( data.ACCELEROMETER_DATA[1]);
+    });
+
+    return () => socket.off('telemetryData');
+  }, []);
 
   return (
     <div className="h-[570px] w-full bg-gray-300 flex items-center justify-center">
@@ -99,12 +140,12 @@ const Telemetry = ({ teamIdData }) => {
               <h1 className="text-[22px] font-iceland px-[10px]">
                 Time
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
-                <span className="text-[22px] font-iceland ">00:00:00</span>{" "}
+                <span className="text-[22px] font-iceland ">{time}</span>{" "}
               </h1>
               <h1 className="text-[22px] font-iceland px-[10px]">
                 Altitude &nbsp;{" "}
                 <span className="text-[22px] font-iceland px-[10px]">
-                  {altitude}
+                  {gnssAltitude}
                 </span>{" "}
               </h1>
               <h1 className="text-[22px] font-iceland px-[10px]">
@@ -194,14 +235,14 @@ const Telemetry = ({ teamIdData }) => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <span className="text-[25px] font-iceland px-[10px]">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                {gyro}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{gyro}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{gyro}
+                {gyroX} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{gyroY}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{gyroZ}
               </span>{" "}
             </h1>
             <h1 className="text-[25px] font-iceland px-[10px]">
               Acceleration &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{" "}
               <span className="text-[25px] font-iceland px-[10px]">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {acceleration}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{acceleration}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{acceleration}
+              {accelerationX}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{accelerationY}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{accelerationZ}
               </span>{" "}
             </h1>
             <h1 className="text-[25px] font-iceland px-[10px]">

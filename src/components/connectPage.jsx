@@ -75,9 +75,9 @@ const ConnectPage = () => {
               <path
                 d="M1 16.8115H6.46103L13.2873 1.98364L18.7483 31.6394L26.9399 9.39758L32.6603 24.2254L36.4967 16.8115H41.9577"
                 stroke="#808080"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

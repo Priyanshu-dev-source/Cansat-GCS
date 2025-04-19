@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import{ useNavigate } from "react-router-dom"
 import vyom from "/assets/VyomPSIT.png";
+import io from "socket.io-client";
+
+const socket = io('http://localhost:5000');
 
 const Navbar = ({sendTeamIdToParent}) => {
 
@@ -8,12 +11,23 @@ const Navbar = ({sendTeamIdToParent}) => {
   const [teamId, setTeamId] = useState("3143");
   const [teamName, setTeamName] = useState("PSIT Vyomnauts");
   const [state, setState] = useState("LAUNCHPAD");
-  const [missionTime, setMissionState] = useState("00:00:00");
+  const [missionTime, setMissionTime] = useState("00:00:00");
   const [gpsTime, setGpsTime] = useState("00:00:00");
 
   useEffect(()=>{
     sendTeamIdToParent(teamId);
   },[teamId])
+
+  useEffect(() => {
+    socket.on('telemetryData', (data) => {
+      if (data.TEAM_ID) setTeamId(data.TEAM_ID);
+      if (data.TIME) setMissionTime(data.TIME);
+      if (data.FLIGHT_SOFTWARE_STATE) setState(data.FLIGHT_SOFTWARE_STATE)
+
+    });
+
+    return () => socket.off('telemetryData');
+  },[])
 
   return (
     <div className="w-full h-[100px] bg-white flex items-center justify-between px-4 border-b-2 border-black">
@@ -37,7 +51,7 @@ const Navbar = ({sendTeamIdToParent}) => {
         </div>
         <div className="h-20 w-[190px] hover:border-4 hover:border-gray-300 hover:scale-[105%] transition-all duration-200 cursor-pointer rounded-[10px] flex items-center justify-center flex-col">
           <h2 className="font-iceland text-[22px] font-bold">Mission Time</h2>
-          <p className="font-iceland text-[26px]">{missionTime}</p>
+          <p className="font-iceland text-[20px] text-center">{missionTime}</p>
         </div>
         <div className="h-20 w-[190px] hover:border-4 hover:border-gray-300 hover:scale-[105%] transition-all duration-200 cursor-pointer rounded-[10px] flex items-center justify-center flex-col">
           <h2 className="font-iceland text-[22px] font-bold">GPS Time</h2>
