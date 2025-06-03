@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
 import {
   LineChart,
   Line,
@@ -9,7 +10,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import "leaflet/dist/leaflet.css";
 import cansat from "/assets/cansat.png";
 
 const Graphs = ({ data }) => {
@@ -71,7 +71,7 @@ const Maps = () => {
   });
 
   return (
-    <div className="h-[570px] w-full bg-gray-300 flex items-center gap-[10px] pt-[10px] justify-start flex-col overflow-hidden">
+    <div className="min-h-screen w-full bg-gray-300 flex items-center gap-[10px] pt-[10px] justify-start flex-col overflow-hidden">
       <div className="h-[80px] w-[95%] bg-white flex items-center justify-center gap-[130px]">
         <div className="h-[98%] w-[45%] flex items-center justify-center gap-[120px]">
           <h1 className="font-iceland text-[35px] font-bold">Longitude</h1>

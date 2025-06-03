@@ -7,3 +7,7 @@
 .input-no-arrow {
   -moz-appearance: textfield;
 }
+
+body{
+  overflow-y: hidden;
+}

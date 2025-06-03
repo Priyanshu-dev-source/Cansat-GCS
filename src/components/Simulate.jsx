@@ -82,8 +82,8 @@ const Simulate = () => {
   return (
     <>
       <ToastContainer />
-      <div className="h-[570px] w-full bg-gray-200 flex items-center justify-center flex-col gap-[30px]">
-        <div className="h-[250px] w-[40%] bg-[#0A071ADB] rounded-[30px] flex items-center justify-center flex-col gap-[15px] py-[20px]">
+      <div className="min-h-screen w-full bg-gray-200 flex items-center justify-center flex-col gap-[30px]">
+        <div className="relative bottom-[50px] h-[250px] w-[40%] bg-[#0A071ADB] rounded-[30px] flex items-center justify-center flex-col gap-[15px] py-[20px]">
           <h1 className="text-[40px] text-white font-iceland font-bold">
             Barometric Pressure
           </h1>
@@ -102,7 +102,7 @@ const Simulate = () => {
             </button>
           </div>
         </div>
-        <div className="h-[250px] w-[40%] bg-[#0A071ADB] rounded-[30px] flex items-center justify-center flex-col gap-[15px] py-[20px]">
+        <div className=" relative bottom-[50px] h-[250px] w-[40%] bg-[#0A071ADB] rounded-[30px] flex items-center justify-center flex-col gap-[15px] py-[20px]">
           <h1 className="text-[40px] text-white font-iceland font-bold flex items-center justify-center gap-[20px]">
             <svg
               xmlns="http://www.w3.org/2000/svg"

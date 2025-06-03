@@ -23,7 +23,7 @@ function App() {
         <Navbar sendTeamIdToParent={handleTeamId} />
         <Routes>
           <Route path="/" element={<ConnectPage />} />
-          <Route path="/telemetry" receivedTeamId={teamIdData} element={<Telemetry />} />
+          <Route path="/telemetry" receivedTeamId={teamIdData} element={<Telemetry/>} />
           <Route path="/graph" element={<Graphs />} />
           <Route path="/map" element={<Maps />} />
           <Route path="/simulate" element={<Simulate/>} />
