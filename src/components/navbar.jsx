@@ -7,7 +7,7 @@ const socket = io('http://localhost:5000');
 
 const Navbar = ({sendTeamIdToParent}) => {
   const navigate = useNavigate();
-  const [teamId, setTeamId] = useState("3143");
+  const [teamId, setTeamId] = useState("2024-ASI-CANSAT-052");
   const [teamName, setTeamName] = useState("PSIT Vyomnauts");
   const [state, setState] = useState("LAUNCHPAD");
   const [missionTime, setMissionTime] = useState("00:00:00");
