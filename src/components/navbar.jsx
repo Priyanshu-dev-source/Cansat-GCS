@@ -31,7 +31,7 @@ const Navbar = ({sendTeamIdToParent}) => {
     <div className="w-full min-h-[80px] bg-white flex flex-col md:flex-row items-center justify-between px-2 md:px-4 border-b-2 border-black py-2 md:py-0">
       {/* Left Section */}
       <div className="w-full md:w-[33%] flex items-center justify-center md:justify-start gap-2 md:gap-[20px] mb-2 md:mb-0">
-        <div className="h-16 md:h-20 w-[140px] md:w-[190px] hover:border-4 hover:border-gray-300 rounded-[10px] hover:scale-[105%] transition-all duration-200 cursor-pointer flex items-center justify-center flex-col">
+        <div className="h-16 md:h-20 w-[140px] md:w-[220px] hover:border-4 hover:border-gray-300 rounded-[10px] hover:scale-[105%] transition-all duration-200 cursor-pointer flex items-center justify-center flex-col">
           <h2 className="font-iceland text-[16px] md:text-[22px] font-bold">Team Id</h2>
           <p className="font-iceland text-[16px] md:text-[22px]">{teamId}</p>
         </div>
